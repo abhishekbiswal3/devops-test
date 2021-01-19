@@ -1,0 +1,13 @@
+Solution:
+
+I have launched a EC2-instance in AWS  and enabled ports 4000 and 3002 for custuom TCP and dstination as 0.0.0.0/0
+
+installed the docker in host and created a dockerfile for that ,you can refer the docker file and created a image from it 
+and run that image twice for two conatainers mapping the port of host 4000 and 3002 with containers port 3000
+
+I have created a new docker file "dockerfile1"  for nginx and created a docker image from it and created a container from it and exposing port at 80 .
+
+Now we can acesss the both container using host ipaddress http://18.208.248.59/
+
+Note - I could not inegrate CI job ,since there is no jenkins set up for my system as well as some production issues came up ,if i get 1 or 2 days i will figure out
+
