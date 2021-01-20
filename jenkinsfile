@@ -1,0 +1,32 @@
+pipeline {
+  environment {
+    registry = "biswalavi/docker-test"
+    registryCredential = 'dockerhub'
+  }
+  agent any
+  stages {
+    stage('Cloning Git') {
+      steps {
+        git 'https://github.com/abhishekbiswal3/devops-test.git'
+      }
+    }
+    stage('Building image') {
+      steps{
+        script {
+          docker.build registry + ":$BUILD_NUMBER"
+        }
+      }
+    }
+   stage('Deploy Image') {
+      steps{
+         script {
+            docker.withRegistry( 'https://registry.hub.docker.com', 'dockerhub' ) {
+            dockerImage.push()
+          }
+        }
+      }
+    }
+      
+  }
+  
+}
